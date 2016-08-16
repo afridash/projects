@@ -1,0 +1,276 @@
+﻿@import "variables";
+
+
+
+
+/*theme start*/
+
+#mmc-chat.color-default {
+
+    .box {
+        .box-header {
+            background-color: $colorDefaultLight !important;
+
+            .box-username a {
+                color: $colorDefaultText !important;
+            }
+        }
+
+
+        .box-body {
+            /*border-bottom: 2px solid $colorDefaultBgColor ;*/
+            border-right: 2px solid $colorDefault;
+            border-left: 2px solid $colorDefault;
+            background-color: #fafafa;
+        }
+
+        .box-footer {
+            border-right: 2px solid $colorDefault;
+            border-left: 2px solid $colorDefault;
+        }
+    }
+
+    .minimized,
+    .box.active .box-header {
+        background-color: $colorDefault !important;
+    }
+
+    .minimized li:hover {
+        background-color: $colorDefaultLight;
+    }
+
+    #sidebar {
+        background-color: $colorDefault !important;
+        color: #a1b2c2 !important;
+
+        .sidebar-collapse,
+        .searchbar-closed {
+            color: #37434e !important;
+        }
+
+        .search input,
+        .search label {
+            color: #586a7b !important;
+        }
+
+        .user-list {
+            li:hover {
+                background-color: #2E3844;
+            }
+        }
+    }
+}
+
+#mmc-chat.color-red {
+
+    .box {
+        .box-header {
+            background-color: $colorRedLight !important;
+
+            .box-username a {
+                color: $colorRedText !important;
+            }
+
+
+            .tools {               
+
+                .collapse {
+                    background: url('../img/minimize-white.png') no-repeat !important;
+                }
+
+                .maximize {
+                    background: url('../img/maximize-white.png') no-repeat !important;
+                }
+
+                .close {
+                    background: url('../img/close-white.png') no-repeat !important;
+                }
+            }
+        }
+
+
+        .box-body {
+            /*border-bottom: 2px solid $colorDefaultBgColor ;*/
+            border-right: 2px solid $colorRed;
+            border-left: 2px solid $colorRed;
+        }
+
+        .box-footer {
+            border-right: 2px solid $colorRed;
+            border-left: 2px solid $colorRed;
+        }
+    }
+
+    .minimized,
+    .box.active .box-header {
+        background-color: $colorRed !important;
+    }
+
+    .minimized li:hover {
+        background-color: $colorRedLight;
+    }
+
+    #sidebar {
+        background-color: $colorRed !important;
+        color: $colorRedText !important;
+
+        .sidebar-collapse,
+        .searchbar-closed {
+            color: $colorRedText !important;
+        }
+
+        .search input,
+        .search label {
+            color: $colorRedText !important;
+        }
+
+        .user-list {
+            li:hover {
+                background-color: $colorRedLight;
+            }
+        }
+    }
+}
+
+#mmc-chat.color-green {
+
+    .box {
+        .box-header {
+            background-color: $colorGreenLight !important;
+
+            .box-username a {
+                color: $colorGreenText !important;
+            }
+
+
+            .tools {               
+
+                .collapse {
+                    background: url('../img/minimize-white.png') no-repeat !important;
+                }
+
+                .maximize {
+                    background: url('../img/maximize-white.png') no-repeat !important;
+                }
+
+                .close {
+                    background: url('../img/close-white.png') no-repeat !important;
+                }
+            }
+        }
+
+
+        .box-body {
+            /*border-bottom: 2px solid $colorDefaultBgColor ;*/
+            border-right: 2px solid $colorGreen;
+            border-left: 2px solid $colorGreen;
+        }
+
+        .box-footer {
+            border-right: 2px solid $colorGreen;
+            border-left: 2px solid $colorGreen;
+        }
+    }
+
+    .minimized,
+    .box.active .box-header {
+        background-color: $colorGreen !important;
+    }
+
+    .minimized li:hover {
+        background-color: $colorGreenLight;
+    }
+
+    #sidebar {
+        background-color: $colorGreen !important;
+        color: $colorGreenText !important;
+
+        .sidebar-collapse,
+        .searchbar-closed {
+            color: $colorGreenText !important;
+        }
+
+        .search input,
+        .search label {
+            color: $colorGreenText !important;
+        }
+
+        .user-list {
+            li:hover {
+                background-color: $colorGreenLight;
+            }
+        }
+    }
+}
+
+#mmc-chat.color-brown {
+
+    .box {
+        .box-header {
+            background-color: $colorBrownLight !important;
+
+            .box-username a {
+                color: $colorBrownText !important;
+            }
+
+
+            .tools {               
+
+                .collapse {
+                    background: url('../img/minimize-white.png') no-repeat !important;
+                }
+
+                .maximize {
+                    background: url('../img/maximize-white.png') no-repeat !important;
+                }
+
+                .close {
+                    background: url('../img/close-white.png') no-repeat !important;
+                }
+            }
+        }
+
+
+        .box-body {
+            /*border-bottom: 2px solid $colorDefaultBgColor ;*/
+            border-right: 2px solid $colorBrown;
+            border-left: 2px solid $colorBrown;
+        }
+
+        .box-footer {
+            border-right: 2px solid $colorBrown;
+            border-left: 2px solid $colorBrown;
+        }
+    }
+
+    .minimized,
+    .box.active .box-header {
+        background-color: $colorBrown !important;
+    }
+
+    .minimized li:hover {
+        background-color: $colorBrownLight;
+    }
+
+    #sidebar {
+        background-color: $colorBrown !important;
+        color: $colorBrownText !important;
+
+        .sidebar-collapse,
+        .searchbar-closed {
+            color: $colorBrownText !important;
+        }
+
+        .search input,
+        .search label {
+            color: $colorBrownText !important;
+        }
+
+        .user-list {
+            li:hover {
+                background-color: $colorBrownLight;
+            }
+        }
+    }
+}
+/*theme end*/

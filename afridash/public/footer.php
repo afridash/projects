@@ -1,0 +1,256 @@
+                <!--BEGIN FOOTER-->
+                <div id="footer">
+                    <div class="copyright">
+                        <a href="http://www.afri-dash.com">2015 © Afri-Dash</a></div>
+                </div>
+                <!--END FOOTER-->
+<script type="text/javascript" src="script/jquery.watermarkinput.js"></script>
+    <script type="text/javascript" src="script/jquery.js"></script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+       <script type="text/javascript" src="script/jquery.form.js"></script> 
+    <script src="script/jquery-1.10.2.min.js"></script>
+    <script src="script/jquery-migrate-1.2.1.min.js"></script>
+    <script src="script/jquery-ui.js"></script>
+    <script src="script/bootstrap.min.js"></script>
+    <script src="script/bootstrap-hover-dropdown.js"></script>
+    <script src="script/html5shiv.js"></script>
+    <script src="script/respond.min.js"></script>
+    <script src="script/jquery.metisMenu.js"></script>
+    <script src="script/jquery.slimscroll.js"></script>
+    <script src="script/jquery.cookie.js"></script>
+    <script src="script/icheck.min.js"></script>
+    <script src="script/custom.min.js"></script>
+    <script src="script/jquery.news-ticker.js"></script>
+    <script src="script/jquery.menu.js"></script>
+    <script src="script/pace.min.js"></script>
+    <script src="script/holder.js"></script>
+    <script src="script/responsive-tabs.js"></script>
+    <script src="script/jquery.flot.js"></script>
+    <script src="script/jquery.flot.categories.js"></script>
+    <script src="script/jquery.flot.pie.js"></script>
+    <script src="script/jquery.flot.tooltip.js"></script>
+    <script src="script/jquery.flot.resize.js"></script>
+    <script src="script/jquery.flot.fillbetween.js"></script>
+    <script src="script/jquery.flot.stack.js"></script>
+    <script src="script/jquery.flot.spline.js"></script>
+    <script src="script/zabuto_calendar.min.js"></script>
+    <script src="script/index.js"></script>
+    <!--CORE JAVASCRIPT-->
+
+    <script src="script/main.js"></script>
+    <script>        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-145464-12', 'auto');
+        ga('send', 'pageview');
+
+
+</script>
+<script>
+    //This is for the auto loading more posts
+function yHandler(){
+	// Watch video for line by line explanation of the code
+	// http://www.youtube.com/watch?v=eziREnZPml4
+    var ID=$(".post_box:last").attr("id");
+	var wrap = document.getElementById('wrap');
+	var contentHeight = wrap.offsetHeight;
+	var yOffset = window.pageYOffset; 
+	var y = yOffset + window.innerHeight;
+    var dataString = 'ID='+ ID;
+	if(y >= contentHeight){
+        $.ajax({
+        type: 'POST',
+        url: 'submit.php',
+        data:   dataString,
+        success: function(data){
+                 if(data != null) $("#contentOneTwo").text(data)
+         }
+     });
+		// Ajax call to get more dynamic data goes here
+		wrap.innerHTML += document.getElementById("contentOneTwo").textContent;
+	}
+}
+window.onscroll = yHandler;
+</script>
+<script type="text/javascript" >
+$(document).ready(function()
+{
+$("#notificationLink").click(function()
+{
+$("#notificationContainer").fadeToggle(300);
+$("#notification_count").fadeOut("slow");
+return false;
+});
+
+//Document Click
+$(document).click(function()
+{
+$("#notificationContainer").hide();
+});
+//Popup Click
+$("#notificationContainer").click(function()
+{
+return false
+});
+
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+$(".search").keyup(function() 
+{
+var searchbox = $(this).val();
+var dataString = 'searchword='+ searchbox;
+
+if(searchbox=='')
+{
+}
+else
+{
+
+$.ajax({
+type: "POST",
+url: "search.php",
+data: dataString,
+cache: false,
+success: function(html)
+{
+
+$("#display").html(html).show();
+	
+	
+	}
+
+
+
+
+});
+}return false;    
+
+
+});
+});
+
+jQuery(function($){
+   $("#searchbox").Watermark("Search");
+   });
+</script>
+<script>
+    // Add content to form
+    $('.chat-textarea input').on("keypress", function(e){
+
+        var $obj = $(this);
+        var $me = $obj.parent().parent().find('ul.chat-box-body');
+        var $my_avt = 'https://s3.amazonaws.com/uifaces/faces/twitter/kolage/128.jpg';
+        var $your_avt = 'https://s3.amazonaws.com/uifaces/faces/twitter/alagoon/48.jpg';
+        if (e.which == 13) {
+            var $content = $obj.val();
+            if ($content !== "") {
+                var d = new Date();
+                var h = d.getHours();
+                var m = d.getMinutes();
+                if (m < 10) m = "0" + m;
+                $obj.val(""); // CLEAR TEXT ON TEXTAREA
+
+                var $element = ""; 
+                $element += "<li>";
+                $element += "<p>";
+                $element += "<img class='avt' src='"+$my_avt+"'>";
+                $element += "<span class='user'>"+strUserName+"</span>";
+                $element += "<span class='time'>" + h + ":" + m + "</span>";
+                $element += "</p>";
+                $element = $element + "<p>" + $content +  "</p>";
+                $element += "</li>";
+                
+                $me.append($element);
+                var height = 0;
+                $me.find('li').each(function(i, value){
+                    height += parseInt($(this).height());
+                });
+
+                height += '';
+                //alert(height);
+                $me.scrollTop(height);  // add more 400px for #chat-box position      
+
+                // RANDOM RESPOND CHAT
+
+                var $res = "";
+                $res += "<li class='odd'>";
+                $res += "<p>";
+                $res += "<img class='avt' src='"+$your_avt+"'>";
+                $res += "<span class='user'>Swlabs</span>";
+                $res += "<span class='time'>" + h + ":" + m + "</span>";
+                $res += "</p>";
+                $res = $res + "<p>" + "Yep! It's so funny :)" + "</p>";
+                $res += "</li>";
+                setTimeout(function(){
+                    $me.append($res);
+                    $me.scrollTop(height+100); // add more 500px for #chat-box position             
+                }, 1000);
+            }
+        }
+    });
+</script>
+</body>
+</html>
+<div class="modal fade" id="ChangeCover" role ="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Upload a Cover Photo</h4>
+      </div>
+      <div class="modal-body">
+      <div class="container-fluid">
+        <form action="?f_name=<?php echo $_GET['f_name']?>&l_name=<?php echo $_GET['l_name']?>&changecoverphoto=true" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <input type="submit" name="submit" value="Upload">
+        </form>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-default" data-dismiss="modal">Close</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="course_description" role ="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <form action="" method="post">
+      <div class="modal-header">
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Update Course Description</h4>
+      </div>
+      <div class="modal-body">
+      <div class="container-fluid">
+        <div class="form-group">
+            <label for="inputMessage" class="control-label">Comment</label><textarea rows="5" class="form-control" name="description"></textarea>
+            <small class="help-block">You may use these HTML tags and attributes: &#x3C;a href=&#x22;&#x22;
+            title=&#x22;&#x22;&#x3E;, &#x3C;abbr title=&#x22;&#x22;&#x3E;, &#x3C;acronym title=&#x22;&#x22;&#x3E;,
+            &#x3C;b&#x3E;, &#x3C;blockquote cite=&#x22;&#x22;&#x3E;, &#x3C;cite&#x3E;, &#x3C;code&#x3E;,
+            &#x3C;del datetime=&#x22;&#x22;&#x3E;, &#x3C;em&#x3E;, &#x3C;i&#x3E;, &#x3C;q cite=&#x22;&#x22;&#x3E;,
+         &#x3C;strike&#x3E;, &#x3C;strong&#x3E;. </small>
+    </div>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <input type="submit" name="submit" value="Save" class="btn btn-default">
+        <a class="btn btn-default" data-dismiss="modal">Close</a>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+<?php ob_end_flush()?>
