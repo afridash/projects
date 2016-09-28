@@ -486,7 +486,11 @@ $ur_id=$crow['userID'];
                     <li id="uzomacalender"><a href="calender.php"><i class="fa fa-calendar fa-fw">
                         <div class="icon-bg bg-grey"></div>
                     </i><span class="menu-title">My Calender</span></a>
-                      
+                    </li>
+                    
+                    <li id="uzomacalender"><a href="calender.php"><i class="fa fa-calendar fa-fw">
+                        <div class="icon-bg bg-grey"></div>
+                    </i><span class="menu-title">My Calender</span></a>
                     </li>
                    <?php    }else { ?>
                                      <?php if($_SESSION['access_level'] == '2'){ ?>

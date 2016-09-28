@@ -135,11 +135,6 @@ confirm_query($student);
   <script type="text/javascript" src="script/emojionearea.js"></script>
     </head>
 <body>
-    
-    <?php
-        
-    $chid = $_POST['convoID'];
-    ?>
 <script>
 var auto_refresh = setInterval(
 function ()
@@ -527,6 +522,11 @@ $ur_id=$crow['userID'];
                     <li id="yenagoapresent"><a href="classes.php"><i class="glyphicon-plus">
                         <div class="icon-bg bg-pink"></div>
                     </i><span class="menu-title">Class Roster</span></a> 
+                    </li>
+                    
+                    <li id="bossmail"><a href="Email.php"><i class="fa fa-envelope-o">
+                        <div class="icon-bg bg-primary"></div>
+                    </i><span class="menu-title">Email</span></a>
                     </li>
                     <?php 
                     global $connection;
