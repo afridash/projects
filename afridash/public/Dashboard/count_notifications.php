@@ -3,7 +3,6 @@
 require_once("../../includes/session.php");
 require_once("../../includes/functions.php");
 require_once("../../includes/validation.php"); 
-require 'class.phpmailer.php';
  $tot_notifications = count_notifications($_SESSION['user_id']); 
 if($tot_notifications > 0 ){ 
     echo "<span class='badge badge-orange'>{$tot_notifications}</span>" ;
