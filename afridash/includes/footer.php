@@ -45,9 +45,6 @@
     <script src="script/jquery.flot.spline.js"></script>
     <script src="script/zabuto_calendar.min.js"></script>
     <script src="script/index.js"></script>
-
-    <script src="assets/js/mmc-common.js"></script>
-    <script src="assets/js/mmc-chat.js"></script>
     <!-- demo js -->
     <script src="assets/js/demo.js"></script>
     <!--CORE JAVASCRIPT-->

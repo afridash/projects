@@ -117,15 +117,6 @@ confirm_query($student);
     <script type="text/javascript" src="script/mikes-modal.min.js"></script>
     <link type="text/css" rel="stylesheet" href="styles/mikes-modal.css">
     <link href="css/style.css" rel="stylesheet" type="text/css" />
-        <link href="assets/plugins/materialize/css/materialize.min.css" rel="stylesheet" />
-
-    <!--Import chat css-->
-    <link href="assets/css/mmc-chat.css" rel="stylesheet" />
-    <!--Import theme css-->
-    <link href="assets/css/mmc-theme.min.css" rel="stylesheet" />
-
-    <!--Import demo css-->
-    <link href="assets/css/demo.min.css" rel="stylesheet" />
       <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css" media="screen">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/emojione/1.5.2/assets/sprites/emojione.sprites.css" media="screen">
   <link rel="stylesheet" type="text/css" href="styles/stylesheet.css" media="screen">
@@ -446,30 +437,8 @@ $ur_id=$crow['userID'];
                         <div class="icon-bg bg-primary"></div>
                     </i><span class="menu-title">Grades</span></a>
                     </li>
-                    <?php 
-                    global $connection;
-                    $query = "SELECT student_college FROM students WHERE email = '{$_SESSION['email']}' ";
-                    $user_college = mysqli_query($connection, $query);
-                    confirm_query($user_college);
-                    while($college = mysqli_fetch_assoc($user_college)){
-                        if($college['student_college']==1){ ?>
-                     <li id="ikulabs"><a href="#"><i class="fa fa-glass fa-fw"><div class="icon-bg bg-blue"></div></i><span class="menu-title">Laboratories</span><span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                        <li><a href="physics_laboratories.php">Physics</span></a>          
-
-                            </li>
-                            <li><a href="chemistry_laboratories.php">Chemistry</a></li>
-                            <li><a href="biology_laboratories.php">Biology</a></li>
-                            <li><a href="mathematics_laboratories.php">Mathematics</a></li>
-                            <li><a href="earthscience_laboratories.php">Earth Science</a></li>
-                        </ul>
+                     <li id="ikulabs"><a target="_blank" href="http://resourcenet.afri-dash.com"><i class="fa fa-suitcase" aria-hidden="true"></i><span class="menu-title">ResourceNet</span></span></a> 
                     </li>
-                    <?php
-                        
-                        }
-                    }
-                    ?>
-                    
                     <li id="pereforums"><a href="#"><i class="fa fa-comments fa-fw">
                         <div class="icon-bg bg-pink"></div>
                     </i><span class="menu-title">Forums</span><span class="fa arrow"></span></a>
@@ -603,76 +572,6 @@ $ur_id=$crow['userID'];
                 </ul>
             </div>
         </nav>
-            <!--END SIDEBAR MENU-->
-            <!--BEGIN CHAT FORM-->
-            <div id="chat-form" class="fixed">
-                <div class="chat-inner">
-                    <h2 class="chat-header">
-                        <a href="javascript:;" class="chat-form-close pull-right"><i class="fa fa-chevron-circle-right fa-lg">
-                        </i></a><i class="fa fa-user"></i>&nbsp; Afri-Messenger &nbsp;<span class="badge badge-info">3</span></h2>
-                    <div id="group-1" class="chat-group">
-                        <strong>Forum List</strong>
-                        
-                    <?php           
-                                    global $connection;
-                                    $query = "SELECT * FROM course_reg WHERE student_email = '{$_SESSION['email']}' ";
-                                    $student_class = mysqli_query($connection, $query);
-                                    confirm_query($student_class);
-                        while($students = mysqli_fetch_assoc($student_class)){
-                            $query = "SELECT * FROM courses WHERE course_id = {$students['course_id']} ORDER BY course_id ASC ";
-                            $course = mysqli_query($connection, $query);
-                            confirm_query($course);
-                            while($courses = mysqli_fetch_assoc($course)){
-                                $title = urlencode($courses['course_title']);
-                                ?>
-                                <a href="#"><span class="user-status is-online"></span> <small>
-                            <?php echo "{$courses['course_title']}"; ?></small> <span class="badge badge-info is-hidden">0</span></a>
-                                <?php   
-                                    }
-                            }?>
-                        </div>
-                    <div id="group-3" class="chat-group">
-                        <strong>Friends</strong>
-                        <?php
-$query = "SELECT U.user_id, U.email, U.first_name, U.last_name, F.status FROM users U, padi F WHERE CASE WHEN F.padi_1 = {$_SESSION['user_id']} THEN F.padi_2 = U.user_id WHEN F.padi_2 = {$_SESSION['user_id']} THEN F.padi_1 = U.user_id END AND F.status = '1' ";
-                            $get_list = mysqli_query($connection, $query);
-                                confirm_query($get_list);
-                            while($new_list = mysqli_fetch_assoc($get_list)){ ?>
-                            <a href="#"><span class="user-status is-online" id="<?php echo "{$new_list['user_id']}"; ?>"></span> <small>
-                            <?php echo "{$new_list['first_name']} {$new_list['last_name']}"; ?></small> <span class="badge badge-info is-hidden">0</span></a>
-                                <?php }
-                                ?>
-                    </div>
-                </div>
-                <div id="chat-box" style="top: 400px">
-                    <div class="chat-box-header">
-                        <a href="#" class="chat-box-close pull-right"><i class="fa fa-chevron-circle-right fa-lg">
-                        </i></a><span class="user-status is-online"></span><span class="display-name">Willard
-                            Mckenzie</span> <small>Online</small>
-                    </div>
-                    <div class="chat-content">
-                        <ul class="chat-box-body">
-                            <li>
-                                <p>
-                                    <img src="images/avatar/128.jpg" class="avt" /><span class="user">John Doe</span><span
-                                        class="time">09:33</span></p>
-                                <p>
-                                    Hi Swlabs, we have some comments for you.</p>
-                            </li>
-                            <li class="odd">
-                                <p>
-                                    <img src="images/avatar/48.jpg" class="avt" /><span class="user">Swlabs</span><span
-                                        class="time">09:33</span></p>
-                                <p>
-                                    Hi, we're listening you...</p>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="chat-textarea">
-                        <input placeholder="Type your message" class="form-control" /></div>
-                </div>
-            </div>
-            <!--END CHAT FORM-->
     <script>
     //Add audio for notification
         var x = document.createElement("AUDIO");
