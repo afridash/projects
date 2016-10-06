@@ -716,11 +716,31 @@ background-color:#00CCFF;
         cursor: pointer;
     }
 .resources {
-  width: 200px;
+  width: auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   text-align: center;
 }
 
 .resourcesContainer {
     padding: 10px;
+}
+
+
+
+.scroll-forums {
+    height: 300px !important;
+    overflow-y: scroll;
+}
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+/* optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: #4885ed;
+}
+
+#wrap {
+    height: 500px;
+    overflow-y: scroll;
 }

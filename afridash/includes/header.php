@@ -423,26 +423,16 @@ $ur_id=$crow['userID'];
                     </i><span class="menu-title">Dashboard</span></a></li>
                     
                     <?php if($_SESSION['access_level'] == '1'){ ?>
-                            <li id="futureplan"><a href="transcript.php"><i class="fa fa-graduation-cap fa-fw">
+                            <li id="futureplan"><a href="virtualadvisor.php"><i class="fa fa-graduation-cap fa-fw">
                         <div class="icon-bg bg-pink"></div>
-                    </i><span class="menu-title">Transcript</span></a>
-                    </li>
-                    
-                    <li id="classReg"><a href="class_registration.php"><i class="glyphicon-plus">
-                        <div class="icon-bg bg-pink"></div>
-                    </i><span class="menu-title">Class Registration</span></a> 
-                    </li>
-                    
-                    <li id="okuberimail"><a href="grade.php"><i class="fa fa-university">
-                        <div class="icon-bg bg-primary"></div>
-                    </i><span class="menu-title">Grades</span></a>
+                    </i><span class="menu-title">Virtual Advisor</span></a>
                     </li>
                      <li id="ikulabs"><a target="_blank" href="http://resourcenet.afri-dash.com"><i class="fa fa-suitcase" aria-hidden="true"></i><span class="menu-title">ResourceNet</span></span></a> 
                     </li>
                     <li id="pereforums"><a href="#"><i class="fa fa-comments fa-fw">
                         <div class="icon-bg bg-pink"></div>
                     </i><span class="menu-title">Forums</span><span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
+                        <ul class="nav nav-second-level scroll-forums">
                         <?php           
                                     global $connection;
                                     $query = "SELECT * FROM course_reg WHERE student_email = '{$_SESSION['email']}' ";
@@ -465,7 +455,7 @@ $ur_id=$crow['userID'];
                     <li id="yingifriends"><a href="#"><i class="fa fa-users fa-fw">
                         <div class="icon-bg bg-pink"></div>
                     </i><span class="menu-title">Friends</span><span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
+                        <ul class="nav nav-second-level scroll-forums">
                                 <?php 
                                 $query = "SELECT U.user_id, U.email, U.first_name, U.last_name, F.status FROM users U, padi F WHERE CASE WHEN F.padi_1 = {$_SESSION['user_id']} THEN F.padi_2 = U.user_id WHEN F.padi_2 = {$_SESSION['user_id']} THEN F.padi_1 = U.user_id END AND F.status = '1' ";
                                 $get_list = mysqli_query($connection, $query);
@@ -492,34 +482,6 @@ $ur_id=$crow['userID'];
                         <div class="icon-bg bg-pink"></div>
                     </i><span class="menu-title">Class Roster</span></a> 
                     </li>
-                    
-                    <li id="bossmail"><a href="Email.php"><i class="fa fa-envelope-o">
-                        <div class="icon-bg bg-primary"></div>
-                    </i><span class="menu-title">Email</span></a>
-                    </li>
-                    <?php 
-                    global $connection;
-                    $query = "SELECT faculty_college FROM faculty WHERE email = '{$_SESSION['email']}' ";
-                    $user_college = mysqli_query($connection, $query);
-                    confirm_query($user_college);
-                    while($college = mysqli_fetch_assoc($user_college)){
-                        if($college['faculty_college']==1){ ?>
-                     <li id="iguniweilab"><a href="#"><i class="fa fa-glass fa-fw"><div class="icon-bg bg-blue"></div></i><span class="menu-title">Laboratories</span><span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                        <li><a href="physics_laboratories.php">Physics</a>          
-                            </li>
-                            <li><a href="chemistry_laboratories.php">Chemistry</a></li>
-                            <li><a href="biology_laboratories.php">Biology</a></li>
-                            <li><a href="mathematics_laboratories.php">Mathematics</a></li>
-                            <li><a href="earthscience_laboratories.php">Earth Science</a></li>
-                        </ul>
-                    
-                    <?php
-                        
-                        }
-                    }
-                    ?>
-                        </li>
                     <li id="igbirikipadimen"><a href="#"><i class="fa fa-users fa-fw">
                         <div class="icon-bg bg-pink"></div>
                     </i><span class="menu-title">Friends</span><span class="fa arrow"></span></a>
@@ -572,6 +534,7 @@ $ur_id=$crow['userID'];
                 </ul>
             </div>
         </nav>
+    </div>
     <script>
     //Add audio for notification
         var x = document.createElement("AUDIO");

@@ -1,41 +1,37 @@
 $(function() {
-	$("#addNewEntry").css('display', 'none');
-	$("#tabs").append('<li id="newitem_tab"><a href="#">New Item</a></li>');
-	$('div.item').children().not('h4').hide();
-	
-	 $('div.item').css('cursor', 'pointer').click(function(e) { 
-        if (!$(e.target).is('textarea')) { 
-            $(this).children().not('h4').slideToggle(); 
-            $(this).children('h4').toggleClass('expandDown'); 
-        } 
-    }); 
-	// add new item tab click
-	$('#tabs li').click(function() { 
-        $('#tabs li').removeClass('selected'); 
-  
-        $(this).addClass('selected'); 
-          
-        if($(this).attr('id') == 'newitem_tab') { 
-            $('#todo').css('display', 'none'); 
-            $('#addNewEntry').css('display', 'block');           
-        } else { 
-            $('#addNewEntry').css('display', 'none'); 
-            $('#todo').css('display', 'block'); 
-        } 
-        return false; 
-    }); 
+ $(".addEntry").click(function(){
+        var myDate = $("#date").val();
+        var myTitle = $("#title").val();
+        var myDescription = $("#description").val();
+        var dataString = 'title='+ myTitle + '&date=' + myDate + '&description='+myDescription;
+$.ajax({
+		type: "POST",
+  url: "addItem.php",
+   data: dataString,
+  cache: false,
+  success: function(results){
+   $('#title').val('');
+    $("#date").val('');
+    $("#description").val('');
+   $('#title').focus();
+      $("#todoListItems").prepend(results);
+      $(".zerowarning").text(" ");
+  }
+ });
+});
 	//code to display just the first description and title of others
 	 $('#todo div:first').children().show(); 
 	 
 	 // Delete anchor tag clicked 
     $('a.deleteEntryAnchor').click(function() { 
         var thisparam = $(this); 
+        var myID = $(this).data("id"); 
         thisparam.parent().parent().find('p').text('Please Wait...'); 
         $.ajax({ 
             type: 'GET', 
             url: thisparam.attr('href'), 
             success: function(results){ 
-                thisparam.parent().parent().fadeOut('slow'); 
+                $("#"+myID).fadeOut('slow');
             } 
         }) 
         return false; 
@@ -44,7 +40,7 @@ $(function() {
 	// Edit an item asynchronously 
       
 $('.editEntry').click(function() { 
-    var $this = $(this); 
+    var $this = $(this);
     var oldText = $this.parent().parent().find('p').text(); 
     var id = $this.parent().parent().find('#id').val(); 
     console.log('id: ' + id); 

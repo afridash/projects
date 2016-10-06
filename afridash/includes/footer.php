@@ -2,20 +2,9 @@
 
 
 </div>
-          <!--BEGIN FOOTER-->
-
-<div id="footer">
-                   <div class="copyright">
-                        <a href="http://www.afri-dash.com">2015 © Afri-Dash</a></div>
-
-
-        </div>
 
 
                             </div>
-                        </div>
-
-                </div>
                 <!--END FOOTER-->
 <script type="text/javascript" src="script/jquery.watermarkinput.js"></script>
        <script type="text/javascript" src="script/jquery.form.js"></script>
@@ -45,6 +34,7 @@
     <script src="script/jquery.flot.spline.js"></script>
     <script src="script/zabuto_calendar.min.js"></script>
     <script src="script/index.js"></script>
+    <script src="script/scripts.js">
     <!-- demo js -->
     <script src="assets/js/demo.js"></script>
     <!--CORE JAVASCRIPT-->
@@ -65,7 +55,6 @@
 
 
 </script>
--->
 <script>
     //This is for the auto loading more posts
 function yHandler(){

@@ -86,8 +86,9 @@ if(isset($_POST['register'])){
                 <!--BEGIN CONTENT-->
                 <div class="page-content">
                     <div id="tab-general">
-                        <div class="col-lg-12 col-sm-12">
-             
+                        <div class="row mbl">
+                        <div class="col-md-12 col-sm-12 col-lg-12 ">
+                        <div class="row">
     <p>Choose a Subject and a Level for all available courses:</p>
   <form role="form" action="class_registration.php" method="post">
     <div class="col-md-6">
@@ -169,21 +170,17 @@ if(isset($_POST['register'])){
     <?php
           }?>
 </form>   
-  
+   </div>
 
-                        <div class="row mbl">
-                            <div class="col-md-8">
                             <div id="area-chart-spline" style="width: 100%; height: 300px; display: none;">
                             </div>
-                            </div>
-                        </div>
+                           
+                      
 
-
+                           
                     </div>
                 </div>
-                        </div>
                     </div>
-                
 
 
  <?php require_once('../../includes/footer.php')?>

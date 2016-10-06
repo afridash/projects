@@ -46,7 +46,9 @@ if(isset($_GET['drop'])){
                 <!--BEGIN CONTENT-->
                 <div class="page-content">
                     <div id="tab-general">
+                        <div class="row mbl">
                         <div class="col-lg-12 col-sm-12">
+                            <div class="row">
 <form action="?drop=1" method="post">
     <div class="panel-body">
         <div class="dataTable_wrapper">
@@ -87,16 +89,14 @@ if(isset($_GET['drop'])){
         <input type="submit" class="btn btn-primary" value="Submit"/>
         </div>
         </form>
+                            </div>               
     </div>
-            </table>
-        </div>
-                        <div class="row mbl">
-                            <div class="col-md-8">
+            
+       
                             <div id="area-chart-spline" style="width: 100%; height: 300px; display: none;">
                             </div>
-                            </div>
-                        </div>
-
+                        
+ </div>
     </div>
                 
 

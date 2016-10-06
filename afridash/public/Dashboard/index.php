@@ -121,25 +121,6 @@ $('#load_posts').load('load_posts.php').fadeIn("slow");
 }, 300000); // refresh every 10000 milliseconds  
         
     }
-        $(".addEntry").click(function(){
-        var myDate = $("#date").val();
-        var myTitle = $("#title").val();
-        var myDescription = $("#description").val();
-        var dataString = 'title='+ myTitle + '&date=' + myDate + '&description='+myDescription;
-$.ajax({
-		type: "POST",
-  url: "addItem.php",
-   data: dataString,
-  cache: false,
-  success: function(results){
-   $('#title').val('');
-    $("#date").val('');
-    $("#description").val('');
-   $('#title').focus();
-  }
-  
- });
-    });
 </script>
 <style>
 .likeUsers
@@ -217,16 +198,16 @@ background-color:#D3E7F5; border-bottom:#ffffff solid 1px; padding-top:3px
                                     </div>
                                     <div class="panel-body">
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#UpdateStatus" data-toggle="tab">Update Status</a></li>
-                <li><a data-toggle="tab" href="#AddPhoto">Add  Photo</a></li>
+                <li class="active"><a href="#UpdateStatus" data-toggle="tab" class="btn btn-sm">Update Status</a></li>
+                <li><a data-toggle="tab" href="#AddPhoto" class="btn btn-sm">Add  Photo</a></li>
                                                 </ul>
             <div class="tab-content">
                 <div id="UpdateStatus" class="tab-pane fade in active">
                     <form action="" method="POST">
                 <div class="form-group">
-		          <textarea class="form-control" rows="3" id="comment"  placeholder="What's on your mind" name="status"></textarea>
+		          <textarea class="form-control" rows="1" id="comment"  placeholder="What's on your mind" name="status"></textarea>
 		          </div>
-		          <input type="submit" class="btn btn-primary" name="submit" value="Share">
+		          <input type="submit" class="btn btn-primary btn-sm" name="submit" value="Share">
 		          </form>
                 </div>
                    <div id="AddPhoto" class="tab-pane fade" >
