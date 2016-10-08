@@ -22,31 +22,41 @@
   </div>
 </div>
 </div>
+<% if !flash.empty? %>
+<div class="panel panel-danger">
+  <div class="panel-heading">
+    <div class="row">
+      <p class="lead text-center"><%= flash[:notice] %></p>
+  </div>
+</div>
+</div>
+<% end %>
   <div class="panel panel-info">
       <h3 class="text-center">Log In</h3>
   <div class="panel-body">
-    <form class="form-vertical" action="">
-        <div class="form-group">
-        <div class="row">
-        <label for="username" class="col-sm-3 col-md-3 col-lg-3 text-center">User</label>
-        <div class="col-sm-9 col-md-9 col-lg-9">
-        <input class="form-control " type="text" name="username">
-        </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="row">
-          <label for="password" class="col-sm-3 col-md-3 col-lg-3 text-center">Password</label>
-          <div class="col-sm-9 col-md-9 col-lg-9">
-            <input class="form-control " type="password" name="password">
-          </div>
-        </div>
-        </div>
-    </form>
+    <%= form_tag(:action => 'attempt_login', :class => 'form-vertical') do %>
+    <div class="form-group">
+    <div class="row">
+    <label for="username" class="col-sm-3 col-md-3 col-lg-3 text-center">User</label>
+    <div class="col-sm-9 col-md-9 col-lg-9">
+    <%= text_field :username,nil,class:'form-control' %>
+    </div>
   </div>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <label for="password" class="col-sm-3 col-md-3 col-lg-3 text-center">Password</label>
+      <div class="col-sm-9 col-md-9 col-lg-9">
+        <%= password_field_tag :password, nil, class: 'form-control'  %>
+      </div>
+    </div>
+    </div>
+    <%= submit_tag("Go!", :class => "btn btn-primary") %>
+    <% end %>
+      </div>
+  </div>
+  <p class="text-center">Afridash Confidential <i class="fa fa-copyright"></i> <span id="cpdate">Hello</span></p>
 </div>
-<p class="text-center">Afridash Confidential <i class="fa fa-copyright"></i> <span id="cpdate">Hello</span></p>
-
 </div>
 </div>
 </div>
