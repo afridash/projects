@@ -18,18 +18,13 @@ global $connection;
 if(isset($_POST['register'])){
     if(!empty($_POST['check_list'])){
     foreach($_POST['check_list'] as $class){
-    if(registered($_SESSION['email'], $class)){
-        $_SESSION['Registered'] = "That class has already been registered";
-        redirect_to('class_registration.php');
-    }
-       
     if(!registered($_SESSION['user_id'], $class)){
-    $query = "INSERT INTO course_reg(student_email, course_id) VALUES('{$_SESSION['email']}', {$class})";
+    $query = "INSERT INTO course_prereg(email, course_id) VALUES('{$_SESSION['email']}', {$class})";
     $registered = mysqli_query($connection, $query);
     confirm_query($registered);
         }
     }
-        redirect_to('registered_classes.php');
+        redirect_to('class_registration.php');
     }
 }
 ?>
@@ -90,10 +85,6 @@ if(isset($_POST['register'])){
     </div>
       </div>
   </form>
-     <?php echo form_errors($errors);?>
-    <?php if(isset($_SESSION['Registered'])){echo $_SESSION['Registered'];}
-    $_SESSION['Registered'] = "";
-    ?>
 <div class="SearchResult1"></div> 
                         <div class="row mbl">
                             <div class="col-md-8">

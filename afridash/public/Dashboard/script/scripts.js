@@ -78,3 +78,69 @@ $("select#sel4").change(function(){
         $(".SearchResult1").html("<p class='lead text-center'>Pick a Subject</p>");
     }
 });
+$(document).on("click", "#deleteClass", function(){
+  if(confirm('Are you sure?')){
+      var id=$(this).data('id');
+      var dataString = "course_id="+id;
+      $.ajax({
+         type: "POST",
+        data: dataString,
+         cache: false,
+         url: "ajax/drop_class.php",
+         success: function(result){
+             $("#tr"+id).fadeOut('slow');
+             showNotification({
+                type : "success",
+                message: "Class was successfully dropped. ",
+                autoClose: true, 
+                 duration: 2
+            });  
+          },
+        error: function (msg) {
+                        showNotification({
+                            message: "Oops! an error occurred.",
+                            type: "error", // type of notification is error
+                            autoClose: true, // auto close to true
+                            duration: 3 // display duration
+                        });
+            $("#tr"+id).fadeOut('slow');
+            }
+      });
+  }
+});
+
+$(document).on("click", "#dropClass", function(){
+      var id=$(this).data('id');
+      var num_pre=$("#num_pre").val();
+    if(num_pre > 1){
+        num_pre -=1;
+        $("#num_pre").val(num_pre);
+    }else{
+        $("#RegistrationForm").hide(100);
+    }
+      var dataString = "course_id="+id+"&pre=true";
+      $.ajax({
+         type: "POST",
+        data: dataString,
+         cache: false,
+         url: "ajax/drop_class.php",
+         success: function(result){
+             $("#tr"+id).fadeOut('slow');
+             showNotification({
+                type : "success",
+                message: "Class was successfully removed from your list. ",
+                autoClose: true, 
+                 duration: 2
+            });  
+          },
+        error: function (msg) {
+                        showNotification({
+                            message: "Oops! an error occurred.",
+                            type: "error", // type of notification is error
+                            autoClose: true, // auto close to true
+                            duration: 3 // display duration
+                        });
+            $("#tr"+id).fadeOut('slow');
+            }
+      });
+});

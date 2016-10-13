@@ -1,8 +1,8 @@
 <?php ob_start(); ?>
 <?php
-require_once("../../includes/session.php");
-require_once("../../includes/functions.php");
-require_once("../../includes/validation.php");
+require_once("../../../includes/session.php");
+require_once("../../../includes/functions.php");
+require_once("../../../includes/validation.php");
 if(isset($_POST)) { 
     global $connection;
     $query = "INSERT INTO toDos(user_id,title, description, date) VALUES ({$_SESSION['user_id']}, '{$_POST['title']}', '{$_POST['description']}', '{$_POST['date']}')"; 

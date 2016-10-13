@@ -34,7 +34,8 @@
     <script src="script/jquery.flot.spline.js"></script>
     <script src="script/zabuto_calendar.min.js"></script>
     <script src="script/index.js"></script>
-    <script src="script/scripts.js">
+    <script type="text/javascript" src="script/jquery_notification_v.1.js"></script>
+    <script src="script/scripts.js"></script>
     <!-- demo js -->
     <script src="assets/js/demo.js"></script>
     <!--CORE JAVASCRIPT-->

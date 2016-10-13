@@ -13,19 +13,6 @@ $student_classes = mysqli_query($connection, $query);
 confirm_query($student_classes);
 ?>
 <?php confirm_if_user_logged_in(); ?> 
-<?php
-global $connection;
-if(isset($_GET['drop'])){
-    if(!empty($_POST['check_list'])){
-    foreach($_POST['check_list'] as $class){ 
-    $query = "DELETE FROM course_reg  WHERE student_email = '{$_SESSION['email']}' AND course_id ={$class} ";
-    $registered = mysqli_query($connection, $query);
-    confirm_query($registered);
-    }
-        redirect_to('registered_classes.php');
-    }
-}
-?>
 <?php require_once("../../includes/header.php");?>
 <div id="page-wrapper">
                 <!--BEGIN TITLE & BREADCRUMB PAGE-->
@@ -49,13 +36,11 @@ if(isset($_GET['drop'])){
                         <div class="row mbl">
                         <div class="col-lg-12 col-sm-12">
                             <div class="row">
-<form action="?drop=1" method="post">
     <div class="panel-body">
         <div class="dataTable_wrapper">
             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                     <tr>
-                    <th>Drop</th>
                      <th>Course Title</th>
                     <th>Course Code</th>
                     <th>Credits</th>
@@ -72,7 +57,6 @@ if(isset($_GET['drop'])){
             while($courses = mysqli_fetch_assoc($class)){
             ?>
          <tr>
-             <td><input type="checkbox" name="check_list[]" value="<?php echo $courses['course_id']?>"/></td>
             <td><?php echo $courses['course_title'];?></td>
             <td><?php echo $courses['course_code'];?></td>
             <td><?php echo $courses['course_credit'];?></td>
@@ -85,10 +69,6 @@ if(isset($_GET['drop'])){
         </table>
         </div>
     </div>
-        <div align="center">
-        <input type="submit" class="btn btn-primary" value="Submit"/>
-        </div>
-        </form>
                             </div>               
     </div>
             

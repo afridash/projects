@@ -306,7 +306,13 @@ $query = "SELECT * FROM course_reg WHERE student_email = '{$student_email}' AND 
     return false;
     }
 }
+function remove_preregistered_class($tudent_email, $class){
+    global $connection;
+    $query = "DELETE FROM course_prereg WHERE email = '{$student_email}' AND course_id = {$class}";
+    $remove = mysqli_query($connection, $query);
+    confirm_query($remove);
 
+}
 function logged_in($user_id){
     global $connection;
     $query = "UPDATE users ";

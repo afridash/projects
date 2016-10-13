@@ -5,45 +5,18 @@ require_once("../../includes/functions.php");
 require_once("../../includes/validation.php");
 //new_session_id();//This is to reset the user id every 10 mins
 ?>
-<?php confirm_if_user_logged_in(); ?>
-<?php 
-$errors= array();
-$post = FALSE;
-if(isset($_POST['submit'])){
-    $department = isset($_POST['subject'])? $_POST['subject']:"";
-    $level = isset($_POST['level'])? $_POST['level']:"";
-    global $connection;
-    if(empty($department)){
-    $errors['department'] = "The subject field cannot be empty ";
-    }
-    if(!empty($department) && !empty($level)){
-        $post = TRUE;
-        $query = " SELECT department_id FROM department WHERE department_name = '{$department}' ";
-        $dept_id = mysqli_query($connection, $query);
-        confirm_query($dept_id);
-        $dept = mysqli_fetch_assoc($dept_id);
-        $get_courses = " SELECT * FROM courses WHERE course_department = {$dept['department_id']} AND course_level = '{$level}'";
-        $classes = mysqli_query($connection, $get_courses);
-        confirm_query($classes);
-        
-    }
-    if(!empty($department) && empty($level)){
-        $post = TRUE;
-        $query = "SELECT department_id FROM department WHERE department_name = '{$department}'";
-        $dept_id = mysqli_query($connection, $query);
-        confirm_query($dept_id);
-        $dept = mysqli_fetch_assoc($dept_id);
-        $get_courses = "SELECT * FROM courses WHERE course_department ={$dept['department_id']} ";
-        $classes = mysqli_query($connection, $get_courses);
-        confirm_query($classes);
-    }
-}
-?>
 <?php
 global $connection;
-$query = "SELECT * FROM department ORDER BY department_name ASC";
-$departments = mysqli_query($connection, $query);
-confirm_query($departments);
+$query = "SELECT * FROM course_prereg WHERE email = '{$_SESSION['email']}' ORDER BY id ASC";
+$prereg_classes = mysqli_query($connection, $query);
+$num_pre = mysqli_num_rows($prereg_classes);
+confirm_query($prereg_classes);
+?>
+<?php 
+global $connection;
+$query = "SELECT * FROM course_reg WHERE student_email = '{$_SESSION['email']}' ";
+$student_classes = mysqli_query($connection, $query);
+confirm_query($student_classes);
 ?>
 <?php
 global $connection;
@@ -59,9 +32,12 @@ if(isset($_POST['register'])){
     $query = "INSERT INTO course_reg(student_email, course_id) VALUES('{$_SESSION['email']}', {$class})";
     $registered = mysqli_query($connection, $query);
     confirm_query($registered);
+    $sql = "DELETE FROM course_prereg WHERE email='{$_SESSION['email']}' AND course_id={$class}";
+    $removeClass = mysqli_query($connection, $sql);
+    confirm_query($removeClass);
         }
     }
-        redirect_to('registered_classes.php');
+        redirect_to('class_registration.php');
     }
 }
 ?>
@@ -89,55 +65,20 @@ if(isset($_POST['register'])){
                         <div class="row mbl">
                         <div class="col-md-12 col-sm-12 col-lg-12 ">
                         <div class="row">
-    <p>Choose a Subject and a Level for all available courses:</p>
-  <form role="form" action="class_registration.php" method="post">
-    <div class="col-md-6">
-    <div class="form-group">
-      <label for="sel1">Subjects:</label>
-      <select class="form-control" id="sel1" name="subject">
-          <option></option>
-          <?php 
-          while($dept = mysqli_fetch_assoc($departments)){
-              ?>
-              <option><?php echo $dept['department_name']?></option>
-          <?php
-          }
-          ?>
-      </select>
-      <br>
-    </div>
-        </div>
-      <div class="col-md-6">
-    <div class="form-group">
-      <label for="sel1">Level</label>
-      <select class="form-control" id="sel1" name="level">
-        <option></option>
-        <option>100</option>
-        <option>200</option>
-        <option>300</option>
-        <option>400</option>
-        <option>500</option>
-      </select>
-      <br>
-    </div>
-      </div>
-      <div align="center">
-      <input type="submit" class="btn btn-primary btn-md" value="Submit" name="submit">
-      </div>
-  </form>
      <?php echo form_errors($errors);?>
-    <?php if(isset($_SESSION['Registered'])){echo $_SESSION['Registered'];}
+    <?php if(isset($_SESSION['Registered']))
+{
+    echo $_SESSION['Registered'];}
     $_SESSION['Registered'] = "";
-    ?>
-    <form role="form" action="class_registration.php" method="post">
-    <?php if($post){
-              ?>
+    if($num_pre > 0){ ?>
+    <input class="form-control" id="num_pre" type="hidden" value="<?php echo $num_pre?>">
+    <form role="form" id="RegistrationForm" action="class_registration.php" method="post">
      <div class="panel-body">
         <div class="dataTable_wrapper">
             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                     <tr>
-                    <th>Select</th>
+                    <th>Registration</th>
                      <th>Course Title</th>
                     <th>Course Code</th>
                     <th>Credits</th>
@@ -147,29 +88,70 @@ if(isset($_POST['register'])){
                 </thead>
                 <tbody>
     <?php
-          while($course = mysqli_fetch_assoc($classes)){
-              ?>
-            <tr>
-            <td><input type="checkbox" name="check_list[]" value="<?php echo $course['course_id']?>"></td>
+          while($pre = mysqli_fetch_assoc($prereg_classes)){
+              $query = "SELECT * FROM courses WHERE course_id= {$pre['course_id']}";
+              $prereg = mysqli_query($connection, $query);
+              confirm_query($prereg);
+              $course = mysqli_fetch_assoc($prereg);
+                  ?>
+            <tr id="tr<?php echo "{$course['course_id']}"?>">
+            <td><input type="checkbox" name="check_list[]" class="form-control" value="<?php echo "{$course['course_id']}"?>"> &nbsp;&nbsp;&nbsp;<a data-id="<?php echo "{$course['course_id']}"?>" href="#" id="dropClass"><i class="fa fa-times"></i></a></td>
             <td><?php echo $course['course_title'];?></td>
             <td><?php echo $course['course_code'];?></td>
             <td><?php echo $course['course_credit'];?></td>
             <td><?php echo $course['course_description'];?></td>
-            <td><?php echo $course['course_semester'];?></td></tr>
-
-    <?php
+            <td><?php echo $course['course_semester'];?></td>
+            </tr>
+        <?php
+          
           }?>
             </tbody>
         </table>
-                        <div align="center" style="margin-bottom:50px;" >
-    <input type="submit" class="btn btn-danger" name="register" value="Register">
-        </div>
         </div>        
     </div>
-
-    <?php
-          }?>
-</form>   
+<div align="center">
+        <input type="submit" name="register" class="btn btn-primary" value="Submit"/>
+        </div>
+</form>  
+<?php
+    }?>
+    <h1 class="text-center">Registered Classes</h1>
+    <div class="panel-body">
+        <div class="dataTable_wrapper">
+            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                <thead>
+                    <tr>
+                    <th>Drop</th>
+                     <th>Course Title</th>
+                    <th>Course Code</th>
+                    <th>Credits</th>
+                    <th>Description</th>
+                    <th>Semester</th>
+                    </tr>
+                </thead>
+                <tbody>
+        <?php
+            while($student_data = mysqli_fetch_assoc($student_classes)){
+            $query = "SELECT * FROM courses WHERE course_id = {$student_data['course_id']} ORDER BY course_id ASC ";
+            $class = mysqli_query($connection, $query);
+            confirm_query($class);
+            while($courses = mysqli_fetch_assoc($class)){
+            ?>
+         <tr id="tr<?php echo "{$student_data['course_id']}"?>">
+             <td><a data-id="<?php echo "{$student_data['course_id']}"?>" href="#" id="deleteClass"><i class="fa fa-times"></i></a></td>
+            <td><?php echo $courses['course_title'];?></td>
+            <td><?php echo $courses['course_code'];?></td>
+            <td><?php echo $courses['course_credit'];?></td>
+            <td><?php echo $courses['course_description'];?></td>
+            <td><?php echo $courses['course_semester'];?></td></tr>
+        <?php   
+        }?>
+    <?php }?>
+            </tbody>
+        </table>
+        </div>
+    </div>
+        
    </div>
 
                             <div id="area-chart-spline" style="width: 100%; height: 300px; display: none;">

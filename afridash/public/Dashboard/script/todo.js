@@ -6,7 +6,7 @@ $(function() {
         var dataString = 'title='+ myTitle + '&date=' + myDate + '&description='+myDescription;
 $.ajax({
 		type: "POST",
-  url: "addItem.php",
+  url: "ajax/addItem.php",
    data: dataString,
   cache: false,
   success: function(results){
@@ -49,7 +49,7 @@ $('.editEntry').click(function() {
         var newText = $(this).val(); 
         $.ajax({ 
             type: 'POST', 
-            url: 'updateEntry.php', 
+            url: 'ajax/updateEntry.php', 
             data: 'description=' + newText + '&id=' + id, 
             success: function(results) { 
                 $this.parent().parent().find('p').empty().append(newText); 

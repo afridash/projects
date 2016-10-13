@@ -109,6 +109,7 @@ confirm_query($student);
     <link type="text/css" rel="stylesheet" href="styles/jquery.news-ticker.css">
     <link type="text/css" rel="stylesheet" href="styles/newStyles.css">
 <link href='timeline.css' rel='stylesheet' type='text/css'/>
+    <link href="css/jquery_notification.css" type="text/css" rel="stylesheet"/>
     <link href='styles/simplelightbox.min.css' rel='stylesheet' type='text/css'>
     <link href='styles/todo.css' rel='stylesheet' type='text/css'>
     <link href="styles/hopscotch.min.css" type="text/css" rel="stylesheet">

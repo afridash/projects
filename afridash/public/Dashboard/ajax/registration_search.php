@@ -64,7 +64,7 @@ if(isset($_POST)){
             </tbody>
         </table>
                         <div align="center" style="margin-bottom:50px;" >
-    <input type="submit" class="btn btn-danger" name="register" value="Register">
+    <input type="submit" class="btn btn-danger" name="register" value="Submit">
         </div>
         </div>        
     </div>

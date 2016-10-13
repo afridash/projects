@@ -42,7 +42,7 @@ check_mobile();
                                        <div class="list-group">
                                     <a href="search_classes.php" class="list-group-item list-group-item-action">Search For Classes</a>
                                     <a href="registration.php" class="list-group-item list-group-item-action">Add Classes</a>
-                                    <a href="class_registration.php" class="list-group-item list-group-item-action">Register Classes</a>
+                                    <a href="class_registration.php" class="list-group-item list-group-item-action">Register/Drop Classes</a>
                                     <a href="registered_classes.php" class="list-group-item list-group-item-action disabled">Class Schedule</a>
                                     </div>
                                     </div>
