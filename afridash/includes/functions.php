@@ -450,5 +450,103 @@ global $connection;
 echo "<i class='fa fa-tasks fa-fw'></i>";
 return $rows;
 }
+
+function delete_post($post_id, $page){
+    global $connection;
+    $query = "DELETE FROM updates WHERE update_id = {$post_id} ";
+    $deleted_post = mysqli_query($connection, $query);
+    confirm_query($deleted_post);
+    $query = "DELETE FROM friend_comments WHERE post_id = {$post_id} ";
+    $delete = mysqli_query($connection, $query);
+    confirm_query($delete);
+    $query = "DELETE FROM notifications WHERE post_id = {$post_id}";
+    $del_noti = mysqli_query($connection, $query);
+    confirm_query($del_noti);
+    $query = "DELETE FROM personal_notifications WHERE post_id = {$post_id} ";
+    $del_personal = mysqli_query($connection, $query);
+    confirm_query($del_personal);
+    redirect_to($page);
+}
+function delete_picture($post_id, $page){
+    global $connection;
+    $query = "SELECT picture FROM updates WHERE update_id = {$post_id} ";
+    $my_pic = mysqli_query($connection, $query);
+    confirm_query($my_pic);
+    $pic = mysqli_fetch_assoc($my_pic);
+    $query = "DELETE FROM pictures WHERE user_id = {$_SESSION['user_id']} AND picture = '{$pic['picture']}'";
+    $delete_pc = mysqli_query($connection, $query);
+    confirm_query($delete_pc);
+    $query = "DELETE FROM updates WHERE update_id = {$post_id} ";
+    $deleted_post = mysqli_query($connection, $query);
+    confirm_query($deleted_post);
+    $query = "DELETE FROM friend_comments WHERE post_id = {$post_id} ";
+    $delete = mysqli_query($connection, $query);
+    confirm_query($delete);
+    $query = "DELETE FROM notifications WHERE post_id = {$post_id}";
+    $del_noti = mysqli_query($connection, $query);
+    confirm_query($del_noti);
+    $query = "DELETE FROM personal_notifications WHERE post_id = {$post_id} ";
+    $del_personal = mysqli_query($connection, $query);
+    confirm_query($del_personal);
+    $filename = "../../Users/{$_SESSION['first_name']}{$_SESSION['last_name']}/pictures/{$pic['picture']}";
+    unlink($filename);
+    redirect_to($page);
+}
+function delete_profile_picture($post_id, $page){
+    global $connection;
+    $query = "UPDATE users SET profile_pictures = ' ' WHERE user_id = {$_SESSION['user_id']}";
+    $del_pic = mysqli_query($connection, $query);
+    confirm_query($del_pic);
+    $query = "SELECT profile_picture FROM updates WHERE update_id = {$post_id} ";
+    $my_pic = mysqli_query($connection, $query);
+    confirm_query($my_pic);
+    $pic = mysqli_fetch_assoc($my_pic);
+    $query = "DELETE FROM profile_pictures WHERE user_id = {$_SESSION['user_id']} AND picture = '{$pic['picture']}'";
+    $delete_pc = mysqli_query($connection, $query);
+    confirm_query($delete_pc);
+    $query = "DELETE FROM updates WHERE update_id = {$post_id} ";
+    $deleted_post = mysqli_query($connection, $query);
+    confirm_query($deleted_post);
+    $query = "DELETE FROM friend_comments WHERE post_id = {$post_id} ";
+    $delete = mysqli_query($connection, $query);
+    confirm_query($delete);
+    $query = "DELETE FROM notifications WHERE post_id = {$post_id}";
+    $del_noti = mysqli_query($connection, $query);
+    confirm_query($del_noti);
+    $query = "DELETE FROM personal_notifications WHERE post_id = {$post_id} ";
+    $del_personal = mysqli_query($connection, $query);
+    confirm_query($del_personal);
+    $filename = "../../Users/{$_SESSION['first_name']}{$_SESSION['last_name']}/pictures/{$pic['picture']}";
+    unlink($filename);
+    redirect_to($page);
+}
+function delete_cover_photo($post_id, $page){
+    global $connection;
+    $query = "UPDATE users SET cover_photos = ' ' WHERE user_id = {$_SESSION['user_id']}";
+    $del_cover = mysqli_query($connection, $query);
+    confirm_query($del_cover);
+    $query = "SELECT cover_photo FROM updates WHERE update_id = {$post_id} ";
+    $my_pic = mysqli_query($connection, $query);
+    confirm_query($my_pic);
+    $pic = mysqli_fetch_assoc($my_pic);
+    $query = "DELETE FROM cover_photos WHERE user_id = {$_SESSION['user_id']} AND picture = '{$pic['picture']}'";
+    $delete_pc = mysqli_query($connection, $query);
+    confirm_query($delete_pc);
+    $query = "DELETE FROM updates WHERE update_id = {$post_id} ";
+    $deleted_post = mysqli_query($connection, $query);
+    confirm_query($deleted_post);
+    $query = "DELETE FROM friend_comments WHERE post_id = {$post_id} ";
+    $delete = mysqli_query($connection, $query);
+    confirm_query($delete);
+    $query = "DELETE FROM notifications WHERE post_id = {$post_id}";
+    $del_noti = mysqli_query($connection, $query);
+    confirm_query($del_noti);
+    $query = "DELETE FROM personal_notifications WHERE post_id = {$post_id} ";
+    $del_personal = mysqli_query($connection, $query);
+    confirm_query($del_personal);
+    $filename = "../../Users/{$_SESSION['first_name']}{$_SESSION['last_name']}/pictures/{$pic['picture']}";
+    unlink($filename);
+    redirect_to($page);
+}
 ?>
 <?php ob_end_flush();?>
