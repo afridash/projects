@@ -144,3 +144,118 @@ $(document).on("click", "#dropClass", function(){
             }
       });
 });
+
+$(document).on("click", "#delete_post", function(){
+      var id=$(this).data('id');
+      var dataString = "post_id="+id+"&delete_post=true";
+      $.ajax({
+         type: "POST",
+        data: dataString,
+         cache: false,
+         url: "ajax/delete_updates.php",
+         success: function(result){
+             $("#update_panelBox"+id).fadeOut('slow');
+             showNotification({
+                type : "information",
+                message: "Post was successfully deleted.",
+                autoClose: true, 
+                 duration: 2
+            });  
+          },
+        error: function (msg) {
+                        showNotification({
+                            message: "Oops! an error occurred.",
+                            type: "error", // type of notification is error
+                            autoClose: true, // auto close to true
+                            duration: 3 // display duration
+                        });
+            $("#update_panelBox"+id).fadeIn('slow');
+            }
+      });
+});
+
+$(document).on("click", "#delete_picture", function(){
+      var id=$(this).data('id');
+      var dataString = "post_id="+id+"&delete_picture=true";
+      $.ajax({
+         type: "POST",
+        data: dataString,
+         cache: false,
+         url: "ajax/delete_updates.php",
+         success: function(result){
+             $("#update_panelBox"+id).fadeOut('slow');
+             showNotification({
+                type : "information",
+                message: "Post was successfully deleted.",
+                autoClose: true, 
+                 duration: 2
+            });  
+          },
+        error: function (msg) {
+                        showNotification({
+                            message: "Oops! an error occurred.",
+                            type: "error", // type of notification is error
+                            autoClose: true, // auto close to true
+                            duration: 3 // display duration
+                        });
+            $("#update_panelBox"+id).fadeIn('slow');
+            }
+      });
+});
+
+$(document).on("click", "#delete_profile_picture", function(){
+      var id=$(this).data('id');
+      var dataString = "post_id="+id+"&delete_profile_picture=true";
+      $.ajax({
+         type: "POST",
+        data: dataString,
+         cache: false,
+         url: "ajax/delete_updates.php",
+         success: function(result){
+             $("#update_panelBox"+id).fadeOut('slow');
+             showNotification({
+                type : "information",
+                message: "Post was successfully deleted.",
+                autoClose: true, 
+                 duration: 2
+            });  
+          },
+        error: function (msg) {
+                        showNotification({
+                            message: "Oops! an error occurred.",
+                            type: "error", // type of notification is error
+                            autoClose: true, // auto close to true
+                            duration: 3 // display duration
+                        });
+            $("#update_panelBox"+id).fadeIn('slow');
+            }
+      });
+});
+$(document).on("click", "#delete_cover_photo", function(){
+      var id=$(this).data('id');
+      var dataString = "post_id="+id+"&delete_cover_photo=true";
+      $.ajax({
+         type: "POST",
+        data: dataString,
+         cache: false,
+         url: "ajax/delete_updates.php",
+         success: function(result){
+             $("#update_panelBox"+id).fadeOut('slow');
+             showNotification({
+                type : "information",
+                message: "Post was successfully deleted.",
+                autoClose: true, 
+                 duration: 2
+            });  
+          },
+        error: function (msg) {
+                        showNotification({
+                            message: "Oops! an error occurred.",
+                            type: "error", // type of notification is error
+                            autoClose: true, // auto close to true
+                            duration: 3 // display duration
+                        });
+            $("#update_panelBox"+id).fadeIn('slow');
+            }
+      });
+});

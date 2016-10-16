@@ -47,21 +47,6 @@ $query = "SELECT * FROM course_reg WHERE student_email = '{$_SESSION['email']}' 
 $student_new = mysqli_query($connection, $query);
 confirm_query($student_new);
 ?>
-<?php 
-if(isset($_GET['delete_post']) & isset($_GET['post_id'])){
-    delete_post($_GET['post_id'], 'index.php');
-}
-if(isset($_GET['delete_picture']) && isset($_GET['post_id'])){
-    delete_picture($_GET['post_id'], 'index.php');
-}
-if(isset($_GET['delete_profile_picture']) && isset($_GET['post_id'])){
-    delete_profile_picture($_GET['post_id'], 'index.php');
-}
-if(isset($_GET['delete_cover_photo']) && isset($_GET['post_id'])){
-    delete_cover_photo($_GET['post_id'], 'index.php');
-}
-
-?>
 <?php require_once("../../includes/header.php");?>
 
 <script type="text/javascript">
@@ -244,23 +229,23 @@ background-color:#D3E7F5; border-bottom:#ffffff solid 1px; padding-top:3px
                                    $updates['type'] = $update_type;   
                                }
                                ?>
-                    <div class="panel">
+                    <div class="panel" id="update_panelBox<?php echo $msgID ?>">
                     <div class="panel-heading">
                         <input type="hidden" name="id" id="id" value="<?php echo $msgID ?>">
                         <div class="caption"><?php set_profile_picture(35,35, $updates['email']); echo "&nbsp&nbsp";
                             echo "<a href='profile.php?f_name={$updates['first_name']}&l_name={$updates['last_name']}'>{$updates['first_name']} {$updates['last_name']}</a> made a {$updates['type']} update ";  
                 ?><?php if(($_SESSION['user_id'] == $updates['user_id']) && !empty($updates['user_update'])){
                     ?>
-                <a style="float:right" href="?post_id=<?php echo $msgID ?>&delete_post=true" onclick="return confirm('Are you sure?')">&nbsp;&nbsp;&nbsp;<i class="fa fa-times"></i></a><a style="float:right" href="#" class="edit_my_post"><i class="fa fa-pencil"></i></a>
+                <a style="float:right" href="#" id="delete_post" data-id="<?php echo $msgID ?>">&nbsp;&nbsp;&nbsp;<i class="fa fa-times"></i></a><a style="float:right" href="#" class="edit_my_post"><i class="fa fa-pencil"></i></a>
                 <?php
                 }elseif(($_SESSION['user_id'] == $updates['user_id']) && $updates['type']=="picture"){ ?>
-                     <a style="float:right" href="?post_id=<?php echo $msgID ?>&delete_picture=true" onclick="return confirm('Are you sure?')">&nbsp;&nbsp;&nbsp;<i class="fa fa-times"></i></a>
+                     <a style="float:right" href="#" id="delete_picture" data-id="<?php echo $msgID ?>">&nbsp;&nbsp;&nbsp;<i class="fa fa-times"></i></a>
             <?php
                 }elseif(($_SESSION['user_id'] == $updates['user_id']) && $updates['type']=="profile picture"){ ?>
-                    <a style="float:right" href="?post_id=<?php echo $msgID ?>&delete_profile_picture=true" onclick="return confirm('Are you sure?')">&nbsp;&nbsp;&nbsp;<i class="fa fa-times"></i></a>        
+                    <a style="float:right" href="#" data-id="<?php echo $msgID ?>" id="delete_profile_picture" >&nbsp;&nbsp;&nbsp;<i class="fa fa-times"></i></a>        
             <?php
                 }elseif(($_SESSION['user_id'] == $updates['user_id']) && $updates['type']=="cover photo"){ ?>
-                    <a style="float:right" href="?post_id=<?php echo $msgID ?>&delete_cover_photo=true" onclick="return confirm('Are you sure?')">&nbsp;&nbsp;&nbsp;<i class="fa fa-times"></i></a>        
+                    <a style="float:right" href="#" data-id="<?php echo $msgID ?>" id="delete_cover_photo">&nbsp;&nbsp;&nbsp;<i class="fa fa-times"></i></a>        
             <?php
                 }
                 ?>

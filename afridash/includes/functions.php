@@ -451,7 +451,7 @@ echo "<i class='fa fa-tasks fa-fw'></i>";
 return $rows;
 }
 
-function delete_post($post_id, $page){
+function delete_post($post_id){
     global $connection;
     $query = "DELETE FROM updates WHERE update_id = {$post_id} ";
     $deleted_post = mysqli_query($connection, $query);
@@ -465,9 +465,8 @@ function delete_post($post_id, $page){
     $query = "DELETE FROM personal_notifications WHERE post_id = {$post_id} ";
     $del_personal = mysqli_query($connection, $query);
     confirm_query($del_personal);
-    redirect_to($page);
 }
-function delete_picture($post_id, $page){
+function delete_picture($post_id){
     global $connection;
     $query = "SELECT picture FROM updates WHERE update_id = {$post_id} ";
     $my_pic = mysqli_query($connection, $query);
@@ -490,9 +489,8 @@ function delete_picture($post_id, $page){
     confirm_query($del_personal);
     $filename = "../../Users/{$_SESSION['first_name']}{$_SESSION['last_name']}/pictures/{$pic['picture']}";
     unlink($filename);
-    redirect_to($page);
 }
-function delete_profile_picture($post_id, $page){
+function delete_profile_picture($post_id){
     global $connection;
     $query = "UPDATE users SET profile_pictures = ' ' WHERE user_id = {$_SESSION['user_id']}";
     $del_pic = mysqli_query($connection, $query);
@@ -518,9 +516,8 @@ function delete_profile_picture($post_id, $page){
     confirm_query($del_personal);
     $filename = "../../Users/{$_SESSION['first_name']}{$_SESSION['last_name']}/pictures/{$pic['picture']}";
     unlink($filename);
-    redirect_to($page);
 }
-function delete_cover_photo($post_id, $page){
+function delete_cover_photo($post_id){
     global $connection;
     $query = "UPDATE users SET cover_photos = ' ' WHERE user_id = {$_SESSION['user_id']}";
     $del_cover = mysqli_query($connection, $query);
@@ -546,7 +543,6 @@ function delete_cover_photo($post_id, $page){
     confirm_query($del_personal);
     $filename = "../../Users/{$_SESSION['first_name']}{$_SESSION['last_name']}/pictures/{$pic['picture']}";
     unlink($filename);
-    redirect_to($page);
 }
 ?>
 <?php ob_end_flush();?>
