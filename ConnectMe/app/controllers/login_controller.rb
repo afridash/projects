@@ -1,5 +1,5 @@
 class LoginController < ApplicationController
-  layout:false;
+  layout:false
   def index
   end
   def attempt_login
